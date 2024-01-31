@@ -1,10 +1,10 @@
 const AbstractManager = require("./AbstractManager");
 
-class ExpPro extends AbstractManager {
+class JeuxFFManager extends AbstractManager {
   constructor() {
     // Call the constructor of the parent class (AbstractManager)
     // and pass the table name "item" as configuration
-    super({ table: "experiencesprofessionnelles" });
+    super({ table: "jeuxfinalfantasy" });
   }
 
   async readAll() {
@@ -13,6 +13,23 @@ class ExpPro extends AbstractManager {
 
     // Return the array of items
     return rows;
+  }
+
+  async create(jeuxfinalfantasy) {
+    const [rows] = await this.database.query(
+      `INSERT INTO JeuxFinalFantasy (titre, description, jacquette_image_url, achat_lien, annee_sortie, plateforme)
+      VALUES (?,?,?,?,?,?)
+`,
+      [
+        jeuxfinalfantasy.titre,
+        jeuxfinalfantasy.description,
+        jeuxfinalfantasy.jacquette_image_url,
+        jeuxfinalfantasy.achat_lien,
+        jeuxfinalfantasy.annee_sortie,
+        jeuxfinalfantasy.plateforme,
+      ]
+    );
+    return rows.insertId;
   }
 
   // The U of CRUD - Update operation
@@ -30,4 +47,4 @@ class ExpPro extends AbstractManager {
   // }
 }
 
-module.exports = ExpPro;
+module.exports = JeuxFFManager;

@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 function ButtonInsert() {
-  return <button type="button"> Insérer de nouvelles informations </button>;
+  return <Link to="/jeux/create"> Insérer de nouvelles informations </Link>;
 }
 
 export default ButtonInsert;

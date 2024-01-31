@@ -1,10 +1,10 @@
 const AbstractManager = require("./AbstractManager");
 
-class FormationManager extends AbstractManager {
+class JeuxTESManager extends AbstractManager {
   constructor() {
     // Call the constructor of the parent class (AbstractManager)
     // and pass the table name "item" as configuration
-    super({ table: "FormationAcademique" });
+    super({ table: "jeuxelderscrolls" });
   }
 
   async readAll() {
@@ -15,19 +15,21 @@ class FormationManager extends AbstractManager {
     return rows;
   }
 
-  async create(FormationAcademique) {
-    const [InsertInfos] = await this.database.query(
-      `INSERT INTO ${this.table} (diplome,etablissement,lieu,date_obtention,user_id) VALUES (?,?,?,?,?);`,
+  async create(jeuxelderscrolls) {
+    const [rows] = await this.database.query(
+      `INSERT INTO jeuxelderscrolls (titre, description, jacquette_image_url, achat_lien, annee_sortie, plateforme)
+      VALUES (?,?,?,?,?,?)
+`,
       [
-        FormationAcademique.diplome,
-        FormationAcademique.etablissement,
-        FormationAcademique.lieu,
-        FormationAcademique.date_obtention,
-        FormationAcademique.user_id,
+        jeuxelderscrolls.titre,
+        jeuxelderscrolls.description,
+        jeuxelderscrolls.jacquette_image_url,
+        jeuxelderscrolls.achat_lien,
+        jeuxelderscrolls.annee_sortie,
+        jeuxelderscrolls.plateforme,
       ]
     );
-
-    return InsertInfos.insertId;
+    return rows.insertId;
   }
 
   // The U of CRUD - Update operation
@@ -45,4 +47,4 @@ class FormationManager extends AbstractManager {
   // }
 }
 
-module.exports = FormationManager;
+module.exports = JeuxTESManager;

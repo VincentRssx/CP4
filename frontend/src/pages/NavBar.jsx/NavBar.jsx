@@ -5,8 +5,11 @@ import "./NavBar.scss";
 function NavBar() {
   return (
     <nav>
-      <ButtonInsert />
-      <ButtonUpdate />
+      <h1>BLIBLIOTHEQUE DE JEUX</h1>
+      <section className="Button">
+        <ButtonInsert />
+        <ButtonUpdate />
+      </section>
     </nav>
   );
 }

@@ -5,7 +5,7 @@ const tables = require("../tables");
 const browse = async (req, res, next) => {
   try {
     // Fetch all items from the database
-    const items = await tables.experiencesprofessionnelles.readAll();
+    const items = await tables.jeuxfinalfantasy.readAll();
 
     // Respond with the items in JSON format
     res.json(items);
@@ -15,10 +15,18 @@ const browse = async (req, res, next) => {
   }
 };
 
-// The D of BREAD - Destroy (Delete) operation
-// This operation is not yet implemented
+const createJeux = async (req, res, next) => {
+  const decision = req.body;
+  try {
+    // Insert the decision into the database
+    const insertId = await tables.jeuxfinalfantasy.create(decision);
+    res.status(201).json(insertId);
+  } catch (err) {
+    next(err);
+  }
+};
 
-// Ready to export the controller functions
 module.exports = {
   browse,
+  createJeux,
 };

@@ -1,12 +1,18 @@
+import Jeux from "./components/Jeux/Jeux";
+import SecondaryNav from "./components/SecondaryNav/SecondaryNav";
 import NavBar from "./pages/NavBar.jsx/NavBar";
-import CV from "./pages/CV/cv";
+import "./app.scss";
+import { JeuxProvider } from "./context/contextJeux";
 
 function App() {
   return (
-    <>
+    <JeuxProvider>
       <NavBar />
-      <CV />
-    </>
+      <main>
+        <Jeux />
+        <SecondaryNav />
+      </main>
+    </JeuxProvider>
   );
 }
 

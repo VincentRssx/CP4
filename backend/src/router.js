@@ -7,18 +7,17 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import itemControllers module for handling item-related operations
-const InfosControllers = require("./controllers/InfosControllers");
-const ExperiencesProControllers = require("./controllers/ExperiencesProControllers");
-const CompTechControllers = require("./controllers/CompTechControllers");
-const FormAcademiqueControllers = require("./controllers/FormAcademiqueControllers");
+const JeuxFFControllers = require("./controllers/JeuxFFControllers");
+const JeuxTESControllers = require("./controllers/JeuxTESControllers");
 
 // Route to get
-router.get("/infosgenerales", InfosControllers.browse);
-router.get("/experiencespro", ExperiencesProControllers.browse);
-router.get("/competencestechnique", CompTechControllers.browse);
-router.get("/FormationAcademique", FormAcademiqueControllers.browse);
+router.get("/jeuxFF", JeuxFFControllers.browse);
+router.get("/jeuxTES", JeuxTESControllers.browse);
+
 // Route to create
-router.post("/FormationAcademique/create", FormAcademiqueControllers.create);
+router.post("/jeuxFF/create", JeuxFFControllers.createJeux);
+router.post("/jeuxTES/create", JeuxFFControllers.createJeux);
+
 /* ************************************************************************* */
 
 module.exports = router;
