@@ -3,6 +3,7 @@ import "./SecondaryNav.scss";
 
 function SecondaryNav() {
   const { setAllJeux } = useallJeuxContext();
+  const { setActiveJeux } = useallJeuxContext();
 
   const handleClickFF = () => {
     fetch(`${import.meta.env.VITE_BACKEND_URL}/api/jeuxFF`)
@@ -11,6 +12,9 @@ function SecondaryNav() {
       })
       .then((data) => {
         setAllJeux(data);
+      })
+      .then(() => {
+        setActiveJeux("jeuxFF");
       })
       .catch((error) => {
         console.error("Erreur lors de la requête:", error);
@@ -26,6 +30,9 @@ function SecondaryNav() {
       .then((data) => {
         setAllJeux(data);
       })
+      .then(() => {
+        setActiveJeux("jeuxTES");
+      })
       .catch((error) => {
         console.error("Erreur lors de la requête", error);
         setAllJeux([]);
@@ -34,21 +41,25 @@ function SecondaryNav() {
 
   return (
     <ul className="list">
-      <li
-        onClick={handleClickFF}
-        onKeyDown={handleClickFF}
-        role="presentation"
-        className="click_list"
-      >
-        Jeux final fantasy
+      <li>
+        <p
+          onClick={handleClickFF}
+          onKeyDown={handleClickFF}
+          role="presentation"
+          className="click_list"
+        >
+          Jeux final fantasy
+        </p>
       </li>
-      <li
-        onClick={handleClickTES}
-        onKeyDown={handleClickTES}
-        role="presentation"
-        className="click_list"
-      >
-        Jeux The Elder Scrolls
+      <li>
+        <p
+          onClick={handleClickTES}
+          onKeyDown={handleClickTES}
+          role="presentation"
+          className="click_list"
+        >
+          Jeux The Elder Scrolls
+        </p>
       </li>
     </ul>
   );

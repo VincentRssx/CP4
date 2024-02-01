@@ -25,7 +25,38 @@ const createJeux = async (req, res, next) => {
   }
 };
 
+const deleteJeux = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    // Appel de votre méthode de suppression avec l'ID
+    const jeuxDelete = await tables.jeuxelderscrolls.delete({ id });
+
+    res.json(jeuxDelete);
+  } catch (err) {
+    // Gérer les erreurs
+    next(err);
+  }
+};
+
+const updateJeux = async (req, res, next) => {
+  // Extract the decision data from the request body
+  const Jeux = req.body;
+
+  try {
+    // Insert the Jeux into the database
+    const insertId = await tables.jeuxelderscrolls.update(Jeux);
+
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted Jeux
+    res.status(201).json({ insertId });
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 module.exports = {
   browse,
   createJeux,
+  deleteJeux,
+  updateJeux,
 };

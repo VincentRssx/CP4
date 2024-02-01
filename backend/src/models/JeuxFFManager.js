@@ -15,6 +15,15 @@ class JeuxFFManager extends AbstractManager {
     return rows;
   }
 
+  async readOne(id) {
+    // Execute the SQL SELECT query to retrieve all items from the "item" table
+    const [rows] = await this.database.query(
+      `select * from ${this.table} WHERE id =?`,
+      [id]
+    );
+    return rows;
+  }
+
   async create(jeuxfinalfantasy) {
     const [rows] = await this.database.query(
       `INSERT INTO JeuxFinalFantasy (titre, description, jacquette_image_url, achat_lien, annee_sortie, plateforme)
@@ -32,19 +41,43 @@ class JeuxFFManager extends AbstractManager {
     return rows.insertId;
   }
 
-  // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing item
+  async delete(jeuxfinalfantasy) {
+    const [deleteFF] = await this.database.query(
+      `DELETE FROM JeuxFinalFantasy WHERE id = ?;
+`,
+      [jeuxfinalfantasy.id]
+    );
+    return deleteFF;
+  }
 
-  // async update(item) {
-  //   ...
-  // }
+  async update(jeuxfinalfantasy) {
+    const [updateJeux] = await this.database.query(
+      `
+      UPDATE 
+      jeuxfinalfantasy
+      SET
+      titre = ?,
+      description = ?,
+      jacquette_image_url = ?,
+      achat_lien = ?,
+      annee_sortie = ?,
+      plateforme = ?
+      WHERE
+      id = ?; 
+      `,
+      [
+        jeuxfinalfantasy.titre,
+        jeuxfinalfantasy.description,
+        jeuxfinalfantasy.jacquette_image_url,
+        jeuxfinalfantasy.achat_lien,
+        jeuxfinalfantasy.annee_sortie,
+        jeuxfinalfantasy.plateforme,
+        jeuxfinalfantasy.id,
+      ]
+    );
 
-  // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an item by its ID
-
-  // async delete(id) {
-  //   ...
-  // }
+    return { updateJeux };
+  }
 }
 
 module.exports = JeuxFFManager;

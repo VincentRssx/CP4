@@ -23,3 +23,18 @@ a.lien_achat {
   text-decoration: none;
   color: black;
 }
+
+.title_delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+span {
+  cursor: pointer;
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 1vw;
+  height: auto;
+  text-align: center;
+}

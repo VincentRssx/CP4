@@ -32,19 +32,43 @@ class JeuxTESManager extends AbstractManager {
     return rows.insertId;
   }
 
-  // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing item
+  async delete(jeuxelderscrolls) {
+    const [deleteTES] = await this.database.query(
+      `DELETE FROM jeuxelderscrolls WHERE id = ?;
+`,
+      [jeuxelderscrolls.id]
+    );
+    return deleteTES;
+  }
 
-  // async update(item) {
-  //   ...
-  // }
+  async update(jeuxelderscrolls) {
+    const [updateJeux] = await this.database.query(
+      `
+      UPDATE 
+      jeuxelderscrolls
+      SET
+      titre = ?,
+      description = ?,
+      jacquette_image_url = ?,
+      achat_lien = ?,
+      annee_sortie = ?,
+      plateforme = ?
+      WHERE
+      id = ?; 
+      `,
+      [
+        jeuxelderscrolls.titre,
+        jeuxelderscrolls.description,
+        jeuxelderscrolls.jacquette_image_url,
+        jeuxelderscrolls.achat_lien,
+        jeuxelderscrolls.annee_sortie,
+        jeuxelderscrolls.plateforme,
+        jeuxelderscrolls.id,
+      ]
+    );
 
-  // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an item by its ID
-
-  // async delete(id) {
-  //   ...
-  // }
+    return { updateJeux };
+  }
 }
 
 module.exports = JeuxTESManager;

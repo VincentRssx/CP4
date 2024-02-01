@@ -5,8 +5,13 @@ const JeuxContext = createContext();
 
 export function JeuxProvider({ children }) {
   const [allJeux, setAllJeux] = useState();
-
+  const [activeJeux, setActiveJeux] = useState("jeuxFF");
+  const [currentId, setCurrentId] = useState();
   const allJeuxContext = useMemo(() => ({
+    currentId,
+    setCurrentId,
+    activeJeux,
+    setActiveJeux,
     allJeux,
     setAllJeux,
   }));

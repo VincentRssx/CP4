@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import { JeuxProvider } from "./context/contextJeux";
 import CreateJeux from "./components/CreateJeux/CreateJeux";
+import UpdateJeux from "./components/UpdateJeux/UpdateJeux";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/jeux/create",
     element: <CreateJeux />,
+  },
+  {
+    path: "/jeux/update/:id",
+    element: <UpdateJeux />,
   },
 ]);
 
