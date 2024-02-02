@@ -73,9 +73,12 @@ function Jeux() {
             <section className="text_jeux">
               <ButtonUpdate Jeu={Jeu.id} setCurrentId={setCurrentId} />
               <p>{Jeu.description}</p>
-              <a href={Jeu.achat_lien} className="lien_achat">
-                Lien d'achat du Jeu : Clique ici
-              </a>
+              <p>
+                Lien d'achat du Jeu :
+                <a href={Jeu.achat_lien} className="lien_achat">
+                  Clique ici
+                </a>
+              </p>
               <p>date de sortie : {Jeu.annee_sortie}</p>
               <p>Plateforme : {Jeu.plateforme}</p>
             </section>

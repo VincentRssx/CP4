@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./UpdateJeux.scss";
 import { useallJeuxContext } from "../../context/contextJeux";
 
@@ -14,6 +14,7 @@ function UpdateJeux() {
     plateforme: "",
   });
 
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -42,13 +43,15 @@ function UpdateJeux() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(jeu),
+      body: JSON.stringify({ ...jeu, id }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.info("Mise à jour réussie :", data);
         // Mise à jour de l'état global
         setAllJeux(data);
+        // Navigation vers la page "/"
+        navigate("/");
       })
       .catch((error) => {
         console.error("Erreur lors de la mise à jour :", error);
@@ -58,89 +61,95 @@ function UpdateJeux() {
   return (
     <div>
       {jeu && (
-        <form className="mon-formulaire">
-          <label htmlFor="titre">
-            Titre:
-            <input
-              type="text"
-              value={jeu.titre}
-              onChange={(e) =>
-                setJeu((prevJeu) => ({
-                  ...prevJeu,
-                  titre: e.target.value,
-                }))
-              }
-            />
-          </label>
-          <label>
-            Description:
-            <input
-              type="text"
-              value={jeu.description}
-              onChange={(e) =>
-                setJeu((prevJeu) => ({
-                  ...prevJeu,
-                  description: e.target.value,
-                }))
-              }
-            />
-          </label>
-          <label>
-            Lien Image:
-            <input
-              type="text"
-              value={jeu.jacquette_image_url}
-              onChange={(e) =>
-                setJeu((prevJeu) => ({
-                  ...prevJeu,
-                  jacquette_image_url: e.target.value,
-                }))
-              }
-            />
-          </label>
-          <label>
-            Lien Achat:
-            <input
-              type="text"
-              value={jeu.achat_lien}
-              onChange={(e) =>
-                setJeu((prevJeu) => ({
-                  ...prevJeu,
-                  achat_lien: e.target.value,
-                }))
-              }
-            />
-          </label>
-          <label>
-            Année de Sortie:
-            <input
-              type="text"
-              value={jeu.annee_sortie}
-              onChange={(e) =>
-                setJeu((prevJeu) => ({
-                  ...prevJeu,
-                  annee_sortie: e.target.value,
-                }))
-              }
-            />
-          </label>
-          <label>
-            Plateforme:
-            <input
-              type="text"
-              value={jeu.plateforme}
-              onChange={(e) =>
-                setJeu((prevJeu) => ({
-                  ...prevJeu,
-                  plateforme: e.target.value,
-                }))
-              }
-            />
-          </label>
-          <Link to="/" type="submit" onClick={handleUpdateJeux}>
-            Soumettre
-          </Link>
-        </form>
+        <section className="color_jeux">
+          <form className="mon-formulaire">
+            <label htmlFor="titre">
+              Titre:
+              <input
+                type="text"
+                value={jeu.titre}
+                onChange={(e) =>
+                  setJeu((prevJeu) => ({
+                    ...prevJeu,
+                    titre: e.target.value,
+                  }))
+                }
+              />
+            </label>
+            <label>
+              Description:
+              <input
+                type="text"
+                value={jeu.description}
+                onChange={(e) =>
+                  setJeu((prevJeu) => ({
+                    ...prevJeu,
+                    description: e.target.value,
+                  }))
+                }
+              />
+            </label>
+            <label>
+              Lien Image:
+              <input
+                type="text"
+                value={jeu.jacquette_image_url}
+                onChange={(e) =>
+                  setJeu((prevJeu) => ({
+                    ...prevJeu,
+                    jacquette_image_url: e.target.value,
+                  }))
+                }
+              />
+            </label>
+            <label>
+              Lien Achat:
+              <input
+                type="text"
+                value={jeu.achat_lien}
+                onChange={(e) =>
+                  setJeu((prevJeu) => ({
+                    ...prevJeu,
+                    achat_lien: e.target.value,
+                  }))
+                }
+              />
+            </label>
+            <label>
+              Année de Sortie:
+              <input
+                type="text"
+                value={jeu.annee_sortie}
+                onChange={(e) =>
+                  setJeu((prevJeu) => ({
+                    ...prevJeu,
+                    annee_sortie: e.target.value,
+                  }))
+                }
+              />
+            </label>
+            <label>
+              Plateforme:
+              <input
+                type="text"
+                value={jeu.plateforme}
+                onChange={(e) =>
+                  setJeu((prevJeu) => ({
+                    ...prevJeu,
+                    plateforme: e.target.value,
+                  }))
+                }
+              />
+            </label>
+            <button
+              className="update_but"
+              onClick={handleUpdateJeux}
+              type="button"
+            >
+              Soumettre
+            </button>
+          </form>
+        </section>
       )}
     </div>
   );

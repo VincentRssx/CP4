@@ -4,11 +4,13 @@
 }
 
 label {
+  color: white;
   display: block;
   margin-bottom: 10px;
 }
 
 input {
+  background-color: white;
   width: 100%;
   padding: 8px;
   margin-top: 4px;
@@ -16,7 +18,7 @@ input {
 }
 
 button {
-  background-color: #4caf50;
+  background-color: #ff5400;
   color: white;
   padding: 10px 15px;
   border: none;
@@ -25,5 +27,24 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #ff5400;
+}
+
+.color_jeux {
+  transform: translate(31vw, 7vh);
+  width: 34vw;
+  border: 2px solid black;
+  background-color: #ff5500d0;
+  border-radius: 15px;
+}
+
+.button_create {
+  background-color: #ff5400;
+  border: 1px solid white;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 2.5vh;
+  text-decoration: none;
+  padding-inline: 1vw;
+  color: white;
 }

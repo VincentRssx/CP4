@@ -49,46 +49,51 @@ function CreateJeux() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mon-formulaire">
-      <label htmlFor="licence">
-        Licence :
-        <select
-          name="licence"
-          id="licence"
-          ref={selectJeuxRef}
-          onChange={handleChange}
-        >
-          <option value="jeuxFF">Final Fantasy</option>
-          <option value="jeuxTES">The Elder Scrolls</option>
-        </select>
-      </label>
+    <section className="color_jeux">
+      <form onSubmit={handleSubmit} className="mon-formulaire">
+        <label htmlFor="licence">
+          Licence :
+          <select
+            name="licence"
+            id="licence"
+            ref={selectJeuxRef}
+            required
+            onChange={handleChange}
+          >
+            <option value="jeuxFF">Final Fantasy</option>
+            <option value="jeuxTES">The Elder Scrolls</option>
+          </select>
+        </label>
 
-      <label>
-        Titre:
-        <input type="text" ref={titreRef} />
-      </label>
-      <label>
-        Description:
-        <input type="text" ref={descriptionRef} />
-      </label>
-      <label>
-        Lien Image:
-        <input type="text" ref={lienImageRef} />
-      </label>
-      <label>
-        Lien Achat:
-        <input type="text" ref={lienAchatRef} />
-      </label>
-      <label>
-        Année de Sortie:
-        <input type="text" ref={anneeSortieRef} />
-      </label>
-      <label>
-        Plateforme:
-        <input type="text" ref={plateformeRef} />
-      </label>
-      <button type="submit">Soumettre</button>
-    </form>
+        <label>
+          Titre:
+          <input type="text" ref={titreRef} required />
+        </label>
+        <label>
+          Description:
+          <input type="text" ref={descriptionRef} required />
+        </label>
+        <label>
+          Lien Image:
+          <input type="text" ref={lienImageRef} required />
+        </label>
+        <label>
+          Lien Achat:
+          <input type="text" ref={lienAchatRef} required />
+        </label>
+        <label>
+          Année de Sortie:
+          <input type="text" ref={anneeSortieRef} required />
+        </label>
+        <label>
+          Plateforme:
+          <input type="text" ref={plateformeRef} required />
+        </label>
+        <button type="submit" className="Button_create">
+          Soumettre
+        </button>
+      </form>
+    </section>
   );
 }
 
