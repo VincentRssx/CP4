@@ -7,16 +7,25 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import itemControllers module for handling item-related operations
-const itemControllers = require("./controllers/itemControllers");
+const JeuxFFControllers = require("./controllers/JeuxFFControllers");
+const JeuxTESControllers = require("./controllers/JeuxTESControllers");
 
-// Route to get a list of items
-router.get("/items", itemControllers.browse);
+// Route to get
+router.get("/jeuxFF", JeuxFFControllers.browse);
+router.get("/jeuxTES", JeuxTESControllers.browse);
+router.get("/jeuxFF/:id", JeuxFFControllers.read);
 
-// Route to get a specific item by ID
-router.get("/items/:id", itemControllers.read);
+// Route to create
+router.post("/jeuxFF/create", JeuxFFControllers.createJeux);
+router.post("/jeuxTES/create", JeuxTESControllers.createJeux);
 
-// Route to add a new item
-router.post("/items", itemControllers.add);
+// Route to delete
+router.delete("/jeuxFF/deletes/:id", JeuxFFControllers.deleteJeux);
+router.delete("/jeuxTES/deletes/:id", JeuxTESControllers.deleteJeux);
+
+// Route to update
+router.put("/jeuxFF/update", JeuxFFControllers.updateJeux);
+router.put("/jeuxTES/update", JeuxTESControllers.updateJeux);
 
 /* ************************************************************************* */
 

@@ -1,0 +1,46 @@
+.Jeux {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.image_jeuxFF {
+  height: 57vh;
+  width: 38vw;
+  border-radius: 15px;
+}
+.jeux_desc {
+  color: white;
+  display: flex;
+  align-items: center;
+  text-align: justify;
+  gap: 7vw;
+}
+
+section.text_jeux {
+  width: 30vw;
+}
+
+a.lien_achat {
+  text-decoration: none;
+  color: white;
+}
+
+h1 {
+  color: white;
+}
+
+.title_delete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+span {
+  cursor: pointer;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 1vw;
+  height: auto;
+  text-align: center;
+}
